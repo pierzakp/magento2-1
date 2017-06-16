@@ -3,8 +3,20 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="before.body.end">
-            <block class="Riskified\Decider\Block\Js" name="riskified_decider_js" as="riskified_decider_js"
-                   template="riskified_js.phtml" cacheable="false"/>
+            <block class="Riskified\Decider\Block\Js"
+                   name="riskified_decider_js"
+                   as="riskified_decider_js"
+                   template="riskified_js.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="riskifiedBeacon" xsi:type="array">
+                                <item name="component" xsi:type="string">Riskified_Decider/js/view/beacon</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

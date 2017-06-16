@@ -1,4 +1,4 @@
-<?php if ($block->isEnabled()) : ?>
+<?php /*if ($block->isEnabled()) : ?>
     <script type="text/javascript">
         (function () {
             function riskifiedBeaconLoad() {
@@ -17,4 +17,27 @@
             window.attachEvent ? window.attachEvent('onload', riskifiedBeaconLoad) : window.addEventListener('load', riskifiedBeaconLoad, false);
         })();
     </script>
-<?php endif; ?>
+<?php endif;*/ ?>
+
+<script>
+  require(
+      [
+        'jquery',
+        'riskifiedBeacon',
+        'Magento_Customer/js/customer-data',
+      ],
+      function($, riskifiedBeacon, customerData) {
+        var data = {},
+            riskifiedData = customerData.get('riskified-beacon');
+
+        _.each(riskifiedData, function(value, key) {
+          if (!this.data.hasOwnProperty(key)) {
+            this.data[key] = ko.observable();
+          }
+          this.data[key](value);
+        }, this);
+
+        var test = 1;
+      },
+  );
+</script>
